@@ -1,0 +1,10 @@
+extends base
+include mixins/video   
+
+
+block content 
+        h2 Hello This is Home page
+
+        each video in videos 
+                +video(video)      
+                      
