@@ -47,6 +47,8 @@ export const postLogin =async(req,res) =>{
     if(!ok){
         return res.status(400).render("login", {pageTitle, errorMessage:"Password was not correct"});
     }
+    req.session.loggedIn = true;
+    req.session.user = user;
     res.redirect("/");
 }
 
