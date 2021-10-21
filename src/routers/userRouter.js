@@ -1,5 +1,6 @@
 import express from "express";
-import {edit,remove,logout,see} from "../controllers/userController";
+import {edit,startGithubLogin,logout,see,finishGithubLogin,getEdit,postEdit,getChangePassword,postChangePassword} from "../controllers/userController";
+import {privateMiddleWare,publicOnlyMiddleWare} from "../middleware";
 
 
 
@@ -9,11 +10,12 @@ import {edit,remove,logout,see} from "../controllers/userController";
 
 const userRouter = express.Router();
 
-userRouter.get("/logout", logout);
-userRouter.get("/edit", edit);
-userRouter.get("/remove", remove);
-userRouter.get("/:id(\\d+)", see);
-
+userRouter.get("/logout",privateMiddleWare, logout);
+userRouter.route("/edit-profile").all(privateMiddleWare).get(getEdit).post(postEdit);
+userRouter.route("/change-password").all(privateMiddleWare).get(getChangePassword).post(postChangePassword);
+userRouter.get("/github/start",publicOnlyMiddleWare, startGithubLogin);
+userRouter.get("/github/finish",publicOnlyMiddleWare, finishGithubLogin);
+// userRouter.get("/:id(\\d+)", see);
 
 
 

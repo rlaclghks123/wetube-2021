@@ -8,8 +8,6 @@ DOCTYPE
                 h1=pageTitle
                 nav 
                     ul
-                        li  
-                            a(href="videos/upload") Upload 
                         li
                             a(href="/") Home 
                         li 
@@ -18,12 +16,16 @@ DOCTYPE
                             li 
                                 a(href="/join") Join  
                             li 
-                                a(href="/login") Login         
+                                a(href="/login") Login    
+                            li  
+                                a(href="videos/upload") Upload          
                         else 
                             li 
-                                a(href="/logout") Logout    
+                                a(href="/users/logout") Logout    
                             li 
                                 span Welcome #{loggedInUser.username}             
+                            li 
+                                a(href="/users/edit-profile") Edit Profile        
                                 
                             
             main 
