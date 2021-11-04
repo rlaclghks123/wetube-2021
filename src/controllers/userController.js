@@ -128,12 +128,13 @@ export const getEdit = (req, res) => {
 export const postEdit = async(req,res) =>{
     const {
         session:{
-            user:{_id}
+            user:{_id, avatar_url}
         }, 
-        body:{ name,username,email,location}
-}=req;
- 
-
+        body:{ name,username,email,location},
+        file,
+    }=req;
+    
+    console.log(file);
 
  const exixts = await User.exists({
     $and: [{ _id: { $ne: _id } }, { $or: [{ username }, { email }] }],
@@ -146,8 +147,8 @@ if(exixts){
  errorMessage:"username/email is already taken"});
 }
 
-
 const updateUser = await User.findByIdAndUpdate(_id,{
+    avatar_url: file ? file.path : avatar_url,
     name,username,email,location
 },
 {new : true});
