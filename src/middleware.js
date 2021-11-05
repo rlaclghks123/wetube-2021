@@ -22,4 +22,14 @@ export const publicOnlyMiddleWare = (req,res,next)=>{
         return res.redirect("/");
     }
 }
-export const uploadFiles = multer({ dest: "uploads/" });
+export const avatarUpload = multer({ 
+    dest: "uploads/avatar/",
+    limit:{
+            fileSize:3000000,
+} });
+
+export const videoUpload = multer({
+    dest:"uploads/videos/",
+    limit:{
+            fileSize:10000000,
+}})

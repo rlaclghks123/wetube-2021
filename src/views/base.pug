@@ -18,15 +18,18 @@ DOCTYPE
                                 a(href="/join") Join  
                             li 
                                 a(href="/login") Login    
+                                    
+                        else                
+                            li 
+                                a(href="/users/logout") Logout             
+                            li 
+                                a(href="/users/edit-profile") Edit Profile  
                             li  
-                                a(href="videos/upload") Upload          
-                        else 
+                                a(href="/videos/upload") Upload   
                             li 
-                                a(href="/users/logout") Logout    
+                                a(href=`${loggedInUser._id}`) My Profile
                             li 
-                                span Welcome #{loggedInUser.username}             
-                            li 
-                                a(href="/users/edit-profile") Edit Profile        
+                                span Welcome #{loggedInUser.username}                    
                                 
                             
             main 
