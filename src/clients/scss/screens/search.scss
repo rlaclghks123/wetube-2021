@@ -1,0 +1,17 @@
+.search__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 640px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  input {
+    &:first-child {
+      padding: 10px;
+      font-size: 15px;
+    }
+    &:last-child {
+      width: 40px;
+      cursor: pointer;
+    }
+  }
+}
