@@ -1,7 +1,7 @@
 extends base
 
 block content 
-    img(src="/"+loggedInUser.avatar_url, width="100", height="100")
+
     form(method="POST", enctype="multipart/form-data")
         lable(for="avatar") Avatar
         input(type="file", id="avatar", name="avatar", accept="image/*")
@@ -12,4 +12,5 @@ block content
         input(type="submit", value="Update Edit") 
       
         if !loggedInUser.socialOnly
+        div.change__password-btn
             a(href="change-password") Change Password &rarr;

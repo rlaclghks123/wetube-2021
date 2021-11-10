@@ -1,6 +1,7 @@
 header
     a(href="/").header-logo
-        i.fab.fa-youtube
+        i.fab.fa-youtube 
+        span Wetube
     nav 
         ul   
             li 
@@ -10,14 +11,17 @@ header
                 li 
                     a(href="/login").header-btn Login    
                 li 
-                    a(href="/join") Join  
-                        
+                    a(href="/join") Join       
             else   
                 li  
-                    a(href="/videos/upload") Upload 
-                li 
-                    a(href=`${loggedInUser._id}`) My Profile      
+                    a(href="/videos/upload") Upload      
                 li 
                     a(href="/users/edit-profile") Edit Profile                   
                 li 
-                    a(href="/users/logout") Logout                             
+                    a(href="/users/logout") Logout    
+                li 
+                    a(href=`/users/${loggedInUser._id}`) 
+                        if loggedInUser.avatar_url === ""
+                            span 😊    
+                        else 
+                            img.avatar(src="/"+loggedInUser.avatar_url)

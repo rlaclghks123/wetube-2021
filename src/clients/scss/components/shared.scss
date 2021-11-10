@@ -7,3 +7,21 @@
   gap: 50px;
   grid-template-columns: repeat(4, repeat(0, 1fr));
 }
+.auth-switch {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  a {
+    margin-left: 10px;
+    background-color: #2065c9;
+    color: white;
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}

@@ -4,14 +4,14 @@
   max-width: 640px;
   margin: 0 auto;
   margin-bottom: 30px;
+  border: none;
   input {
-    &:first-child {
-      padding: 10px;
-      font-size: 15px;
-    }
-    &:last-child {
-      width: 40px;
-      cursor: pointer;
-    }
+    background-color: white;
+  }
+  #search {
+    width: 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 184px;
   }
 }
