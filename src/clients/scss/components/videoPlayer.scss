@@ -1,0 +1,73 @@
+#ideoContainer,
+video {
+  width: 100%;
+}
+
+#videoControls {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: inherit;
+  color: white;
+  opacity: 0.8;
+  position: relative;
+  bottom: 70px;
+  padding: 10px 0px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  &.showing {
+    opacity: 1;
+  }
+  span {
+    font-size: 12px;
+    margin: 0px 3px;
+  }
+}
+
+#videoControls__Btn {
+  display: flex;
+  align-items: center;
+  margin: 0px 20px;
+  justify-content: center;
+}
+
+#timeLine {
+  margin-left: 10px;
+  width: 98%;
+  padding: none;
+  margin-bottom: 10px;
+}
+button {
+  background-color: inherit;
+  border: none;
+  color: white;
+  opacity: 0.8;
+}
+
+#videoControls__Btn-column {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &:first-child {
+    display: flex;
+    justify-content: flex-start;
+  }
+  &:last-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+#playBtn {
+  background-color: none;
+  margin-right: 20px;
+}
+#duration {
+  font-size: 10px;
+}
+#volmun {
+  width: 80px;
+  margin-left: 5px;
+  margin-right: 20px;
+}
+#videoControls__Btn i {
+  font-size: 20px;
+}
