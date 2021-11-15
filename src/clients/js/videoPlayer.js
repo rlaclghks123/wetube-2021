@@ -95,8 +95,13 @@ const handleMouseMove =() =>{
 }
 
 const handleMouseLeave =() =>{
-    timeOutControl = setTimeout(hideTimeOut3000);
-}
+    timeOutControl = setTimeout(hideTimeOut,3000);
+};
+
+const handleEnded =() =>{
+    const {id} = videoContainer.dataset;
+    fetch(`/api/videos/${id}/view`, {method:"POST"});
+};
 
 
 
@@ -106,7 +111,8 @@ window.addEventListener("keydown", handlePlay);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumnChange);
 video.addEventListener("loadedmetadata", handleTotalTime);
-video.addEventListener("timeupdate", handleTimeUpdate)
+video.addEventListener("timeupdate", handleTimeUpdate);
+video.addEventListener("ended", handleEnded);
 timeLine.addEventListener("input", handleTimeLineChange);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 videoContainer.addEventListener("mousemove", handleMouseMove);
