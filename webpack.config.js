@@ -4,7 +4,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     entry : {
         main : "./src/clients/js/main.js",
-        videoPlayer : "./src/clients/js/videoPlayer.js"},
+        videoPlayer : "./src/clients/js/videoPlayer.js",
+        record : "/src/clients/js/record.js"},
+       
     mode : "development",
     watch:true,
     plugins: [new MiniCssExtractPlugin({filename:"css/styles.css"})],

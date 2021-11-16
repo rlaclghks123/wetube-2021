@@ -1,6 +1,7 @@
-#ideoContainer,
-video {
-  width: 100%;
+#videoContainer {
+  video {
+    width: 100%;
+  }
 }
 
 #videoControls {
@@ -36,11 +37,13 @@ video {
   padding: none;
   margin-bottom: 10px;
 }
-button {
-  background-color: inherit;
-  border: none;
-  color: white;
-  opacity: 0.8;
+#videoControls__Btn-column {
+  button {
+    background-color: inherit;
+    border: none;
+    color: white;
+    opacity: 0.8;
+  }
 }
 
 #videoControls__Btn-column {

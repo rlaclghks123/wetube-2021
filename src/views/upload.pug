@@ -2,9 +2,11 @@ extends base
 
 
 block content 
+    div 
+        video#preview
+        button#startBtn Start record
     if errorMessage
         span=errorMessage
-
     form(method="POST",enctype="multipart/form-data")
         lable(for="video") Video File
         input(type="file",accept="video/*" required, id="video", name="video")
@@ -12,3 +14,5 @@ block content
         input(name="description",placeholder="Description", type="text",required)
         input(name="hashtags",placeholder="Hashtags, plz split with comma", type="text",required)
         input(type="submit", value="Upload Video")        
+block scripts     
+        script(src="/static/js/record.js")

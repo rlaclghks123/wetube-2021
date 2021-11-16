@@ -10,7 +10,6 @@ globalRouter.get("/", home);
 globalRouter.route("/join").all(publicOnlyMiddleWare).get(getJoin).post(postJoin);
 globalRouter.route("/login").all(publicOnlyMiddleWare).get(getLogin).post(postLogin);
 globalRouter.get("/search", search);
-globalRouter.get("/hello");
 
 
 
