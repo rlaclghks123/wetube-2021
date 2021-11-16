@@ -4,10 +4,15 @@ const video = document.getElementById("preview");
 
 let stream;
 let recorder;
+let videoFile;
 
 
 const handleDownload =() =>{
-
+    const a = document.createElement("a");
+    a.href=videoFile;
+    a.download = "My Record.webm";
+    document.body.appendChild(a);
+    a.click();
 }
 
 const handleStop =() =>{
@@ -21,14 +26,15 @@ const handleStart =() => {
     startBtn.innerText = "Stop Record";
     startBtn.removeEventListener("click", handleStart);
     startBtn.addEventListener("click", handleStop);
-    recorder = new MediaRecorder(stream);
+    recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
     recorder.ondataavailable = (event) =>{
-    const videoFile = URL.createObjectURL(event.data);   
+    videoFile = URL.createObjectURL(event.data);   
     video.srcObject = null;
     video.src= videoFile;
     video.loop = true;
     video.play();
-    }
+    };
+    recorder.start();
 }
 
 const init = async () => {
