@@ -27,10 +27,17 @@ app.use(session({
     saveUninitialized:false,
     store:MongoStore.create({mongoUrl:process.env.API_KEY}),
 }));
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  //res.header("Cross-Origin-Embedder-Policy", " credentialless");
+  //res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
+
 app.use(localMiddleware);
 app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("assets"));
-
+app.use("/static", express.static("assets"),express.static("node_modules/@ffmpeg/core/dist"));
 //Router
 app.use("/", globalRouter);
 app.use("/users", userRouter);

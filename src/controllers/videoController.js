@@ -1,10 +1,10 @@
 
 import User from "../models/User";
 import Video from "../models/Video";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 
-
-  
 
 export const home = async(req, res) => {
   const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner");
@@ -15,13 +15,14 @@ export const home = async(req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner");
-  
+  dayjs.extend(relativeTime);
+  const createdAtFromNow = dayjs(video.createdAt).fromNow();
   if(!video){
     return res.status(404).render("404",{pageTitle : "Video is not Found"});
   }
-  return res.render("watch", { pageTitle: video.title, video});
+  return res.render("watch", { pageTitle: video.title, video,createdAtFromNow});
 };
-// 
+
 
 export const getEdit = async(req, res) => {
     const {id} = req.params;
@@ -60,7 +61,7 @@ export const postEdit = async(req, res) => {
 
 
 export const getUpload =(req, res) => {
-  return res.render("upload");
+  return res.render("upload",{pageTitle : "Upload"});
 }
 
 
@@ -81,7 +82,7 @@ export const postUpload =async(req, res) => {
     user.save();
     return res.redirect("/");
   } catch(error){
-    return res.status(400).render("upload",{padeTitle : `Upload `,pageerrorMessage : error._message});
+    return res.status(400).render("upload",{pageerrorMessage : error._message});
   }
 }
 
@@ -130,3 +131,5 @@ video.meta.views = video.meta.views+1;
 await video.save();
 return res.res.statusSend(200);
 }
+
+

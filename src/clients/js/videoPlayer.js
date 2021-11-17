@@ -1,3 +1,5 @@
+
+
 const video = document.querySelector("video");
 const playBtn = document.getElementById("playBtn");
 const playBtnIcon = playBtn.querySelector("i");
@@ -12,12 +14,14 @@ const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreenBtnIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
-
+const createdAtBtn = document.getElementById("createdAt");
 
 let timeOutControl = null;
 let controlsMouseMovementTimeOut = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
+
+
 
 const handlePlay = () => {
     if(video.paused){
