@@ -24,4 +24,4 @@ header
                         if loggedInUser.avatar_url === ""
                             span 😊    
                         else 
-                            img.avatar(src="/"+loggedInUser.avatar_url)
+                            img.header__menu__profile(src=loggedInUser.avatarUrl,crossorigin)
