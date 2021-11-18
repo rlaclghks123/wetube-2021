@@ -8,6 +8,7 @@ import videoRouter from "./routers/videoRouter";
 import apiRouter from "./routers/apiRouter";
 import MongoStore from "connect-mongo";
 import {localMiddleware} from "./middleware"
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 
 
 
@@ -35,7 +36,9 @@ app.use((req, res, next) => {
 
 app.use(localMiddleware);
 app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("assets"),express.static("node_modules/@ffmpeg/core/dist"));
+
+app.use("/static", express.static("assets"),
+express.static("node_modules/@ffmpeg/core/dist"));
 //Router
 app.use("/", globalRouter);
 app.use("/users", userRouter);
