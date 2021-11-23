@@ -7,11 +7,14 @@
   border: none;
   input {
     background-color: white;
+    margin-top: 10px;
+
   }
   #search {
-    width: 15px;
+    font-size: 8px;
     cursor: pointer;
-    position: absolute;
-    top: 184px;
+    position:absolute;
+    top: 143px;
+    right: 400px;
   }
 }

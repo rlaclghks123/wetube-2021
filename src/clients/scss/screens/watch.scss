@@ -1,0 +1,39 @@
+#videoPlayer{
+    width: 100%;
+    margin-top: -60px;
+    #videoPlayer__description{
+        padding:20px 0px;
+        font-size: 20px;
+    }
+    #videoPlayer__information{
+        border-bottom: 1px solid rgba(0,0,0,0.1);  
+        padding-bottom: 20px;
+        opacity: 0.5;
+        font-size: 13px;
+    }
+    
+}
+#videoPlayer__modify{
+    margin-top: 30px;
+    a{
+        margin-right: 20px;
+    }
+}
+.video__add-comments {
+    margin-top: 20px;
+    .video__comment-form{
+        display: flex;
+        flex-direction: row;
+        height: 20px;
+        padding: 20px;
+        textarea{
+            font-size: 15px;
+            // background-color: tomato;
+            border:none;
+            color: black;
+        }
+        button{
+            border:none;
+        }
+    }
+}

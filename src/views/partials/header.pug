@@ -18,10 +18,10 @@ header
                 li 
                     a(href="/users/edit-profile") Edit Profile                   
                 li 
-                    a(href="/users/logout") Logout    
-                li 
-                    a(href=`/users/${loggedInUser._id}`) 
+                    a(href=`/users/${loggedInUser._id}`) My Profile
                         if loggedInUser.avatar_url === ""
                             span 😊    
                         else 
                             img.header__menu__profile(src=loggedInUser.avatarUrl,crossorigin)
+                li 
+                    a(href="/users/logout") Logout    

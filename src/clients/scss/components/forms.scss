@@ -1,6 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   max-width: 420px;
   margin: 0 auto;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -22,7 +23,7 @@ form {
 }
 
 input[type="submit"],
-.change__password-btn {
+.change__password-btn,#videoPlayer__modify a{
   cursor: pointer;
   margin-top: 10px;
   background-color: #2065c9;

@@ -121,7 +121,7 @@ export const finishGithubLogin = async (req, res) => {
 export const logout = (req, res) => {
     req.session.destroy();
     req.flash("info", "Bye Bye");
-    res.redirect("/");
+    return res.redirect("/");
 };
 
 export const getEdit = (req, res) => {
@@ -196,7 +196,6 @@ export const see = async (req, res) => {
     if (!user) {
         return res.status(404).render("404", { pagetitle: "User not Found" });
     }
-
 
     return res.render("profile", { pageTitle: user.name, user });
 }

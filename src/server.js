@@ -22,6 +22,7 @@ app.set("views", process.cwd() + "/src/views");
 //Middle Ware
 app.use(logger)
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: false,
@@ -33,7 +34,6 @@ app.use((req, res, next) => {
   res.header("Cross-Origin-Opener-Policy", "same-origin");
   next();
 });
-
 app.use(flash());
 app.use(localMiddleware);
 app.use("/uploads", express.static("uploads"));

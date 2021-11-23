@@ -1,6 +1,7 @@
 
 import User from "../models/User";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -14,7 +15,7 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner");
+  const video = await Video.findById(id).populate("owner").populate("comments");
   dayjs.extend(relativeTime);
   const createdAtFromNow = dayjs(video.createdAt).fromNow();
   if (!video) {
@@ -43,7 +44,7 @@ export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { user: { _id } } = req.session;
   const { title, description, hashtags } = req.body;
-  const video = await Video.exists({ _id: id });
+  const video = await Video.exists({ _id: id }).populate("owner");
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video is not Found" });
   }
@@ -132,7 +133,28 @@ export const registerView = async (req, res) => {
   }
   video.meta.views = video.meta.views + 1;
   await video.save();
-  return res.res.statusSend(200);
+  return res.res.sendStatus(200);
+}
+
+
+export const createComment = async (req, res) => {
+  const {
+    session: { user },
+    body: { text },
+    params: { id },
+  } = req;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.create({
+    text,
+    owner: user._id,
+    video: id,
+  });
+  video.comments.push(comment._id);
+  video.save();
+  return res.sendStatus(201);
 }
 
 
