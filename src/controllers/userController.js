@@ -120,7 +120,7 @@ export const finishGithubLogin = async (req, res) => {
 
 export const logout = (req, res) => {
     req.session.destroy();
-    req.flash("info", "Bye Bye");
+    // req.flash("info", "Bye Bye");
     return res.redirect("/");
 };
 
@@ -185,17 +185,23 @@ export const postChangePassword = async (req, res) => {
     }
     user.password = newpassword;
     await user.save();
-    req.session.user.password = user.password;
     req.flash("info", "Password updated");
     return res.redirect("/users/logout");
 }
 
 export const see = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id).populate("videos");
+    const user = await User.findById(id).populate({
+        path: "videos",
+        populate: {
+            path: "owner",
+            model: "User",
+        },
+    });
+    const videos = await Video.find({}).populate("owner");
     if (!user) {
         return res.status(404).render("404", { pagetitle: "User not Found" });
     }
 
-    return res.render("profile", { pageTitle: user.name, user });
+    return res.render("profile", { pageTitle: user.name, user, videos });
 }

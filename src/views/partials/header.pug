@@ -7,21 +7,27 @@ header
             li 
                 a(href="/search") 
                     i.fas.fa-search     
-            if !loggedIn    
-                li 
-                    a(href="/login").header-btn Login    
-                li 
-                    a(href="/join") Join       
-            else   
+           
+            if loggedIn   
                 li  
                     a(href="/videos/upload") Upload      
                 li 
-                    a(href="/users/edit-profile") Edit Profile                   
-                li 
-                    a(href=`/users/${loggedInUser._id}`) My Profile
-                        if loggedInUser.avatar_url === ""
-                            span 😊    
-                        else 
-                            img.header__menu__profile(src=loggedInUser.avatarUrl,crossorigin)
+                    a(href="/users/edit-profile") Edit Profile         
                 li 
                     a(href="/users/logout") Logout    
+                li
+                    a(href=`/users/${loggedInUser._id}`)
+                        if loggedInUser.avatar_url === ""
+                            span 😀
+                        else
+                            if loggedInUser.avatar_url
+                                if loggedInUser.avatar_url.includes("github")
+                                    img.header__avatar(src="/"+ loggedInUser.avatar_url) 
+                                else
+                                    img.header__avatar(src="/"+ loggedInUser.avatar_url) 
+
+            else   
+                li 
+                    a(href="/login").header-btn Login    
+                li 
+                    a(href="/join") Join                               

@@ -24,94 +24,94 @@ video.volume = volumeValue;
 
 
 const handlePlay = () => {
-    if(video.paused){
+    if (video.paused) {
         video.play();
-    }else{
+    } else {
         video.pause();
     }
-    playBtnIcon.className = video.paused ? "fas fa-play"  : "fas fa-pause";
+    playBtnIcon.className = video.paused ? "fas fa-play" : "fas fa-pause";
 }
 
-const handleMute =() => {
-    if(video.muted){
-        video.muted=false;
-    }else{
-        video.muted =true;
+const handleMute = () => {
+    if (video.muted) {
+        video.muted = false;
+    } else {
+        video.muted = true;
     }
-    muteBtnIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-off"; 
+    muteBtnIcon.classList = video.muted ? "fas fa-volume-mute" : "fas fa-volume-off";
     volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
-const handleVolumnChange =(event) =>{
-    const {target :{value}} =event
-    if(video.muted){
-        video.muted=false;
+const handleVolumnChange = (event) => {
+    const { target: { value } } = event
+    if (video.muted) {
+        video.muted = false;
         muteBtnIcon.classList = "fas fa-volume-off"
     }
-    volumeValue=value;
-    video.value=value;
+    volumeValue = value;
+    video.value = value;
 
 }
 
-const formatTime = (seconds) =>{
-    return new Date(seconds* 1000).toISOString().substr(14,5);
+const formatTime = (seconds) => {
+    return new Date(seconds * 1000).toISOString().substr(14, 5);
 }
 
 const handleTotalTime = () => {
-    totalTime.innerText= formatTime(Math.floor(video.duration));
+    totalTime.innerText = formatTime(Math.floor(video.duration));
     timeLine.max = Math.floor(video.duration);
 }
 
-const handleTimeUpdate = () =>{
+const handleTimeUpdate = () => {
     currentTime.innerText = formatTime(Math.floor(video.currentTime));
     timeLine.value = Math.floor(video.currentTime);
 }
 
-const handleTimeLineChange =(event) =>{
-const {target : {value}}=event
-video.currentTime = value;
+const handleTimeLineChange = (event) => {
+    const { target: { value } } = event
+    video.currentTime = value;
 }
 
 const handleFullScreen = () => {
     const fullScreen = document.fullscreenElement;
-    if(fullScreen){
+    if (fullScreen) {
         document.exitFullscreen();
         fullScreenBtnIcon.classList = "fas fa-expand";
-    }else{
+    } else {
         videoContainer.requestFullscreen();
-        fullScreenBtnIcon.classList="fas fa-compress"
+        fullScreenBtnIcon.classList = "fas fa-compress"
     }
 };
 
-const hideTimeOut =() => videoControls.classList.remove("showing");
+const hideTimeOut = () => videoControls.classList.remove("showing");
 
-const handleMouseMove =() =>{
-    if(timeOutControl){
+const handleMouseMove = () => {
+    if (timeOutControl) {
         clearTimeout(timeOutControl);
-        timeOutControl=null;
+        timeOutControl = null;
     }
-    if(controlsMouseMovementTimeOut){
+    if (controlsMouseMovementTimeOut) {
         clearTimeout(controlsMouseMovementTimeOut);
-        controlsMouseMovementTimeOut=null;
+        controlsMouseMovementTimeOut = null;
     }
-    videoControls.classList.add("showing");   
-    controlsMouseMovementTimeOut = setTimeout(hideTimeOut,3000);
+    videoControls.classList.add("showing");
+    controlsMouseMovementTimeOut = setTimeout(hideTimeOut, 3000);
 }
 
-const handleMouseLeave =() =>{
-    timeOutControl = setTimeout(hideTimeOut,3000);
+const handleMouseLeave = () => {
+    timeOutControl = setTimeout(hideTimeOut, 3000);
 };
 
-const handleEnded =() =>{
-    const {id} = videoContainer.dataset;
-    fetch(`/api/videos/${id}/view`, {method:"POST"});
+const handleEnded = () => {
+    const { id } = videoContainer.dataset;
+    fetch(`/api/videos/${id}/view`, { method: "POST" });
 };
 
 
 
 playBtn.addEventListener("click", handlePlay);
 video.addEventListener("click", handlePlay);
-window.addEventListener("keydown", handlePlay);
+video.addEventListener("keypress", handlePlay);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumnChange);
 video.addEventListener("loadedmetadata", handleTotalTime);

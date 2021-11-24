@@ -9,6 +9,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 export const home = async (req, res) => {
   const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner");
+  console.log(videos[0]._id);
+  console.log(videos[0].id);
+
   return res.render("home", { pageTitle: "Home", videos });
 }
 
