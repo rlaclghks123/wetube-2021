@@ -198,10 +198,9 @@ export const see = async (req, res) => {
             model: "User",
         },
     });
-    const videos = await Video.find({}).populate("owner");
     if (!user) {
         return res.status(404).render("404", { pagetitle: "User not Found" });
     }
 
-    return res.render("profile", { pageTitle: user.name, user, videos });
+    return res.render("profile", { pageTitle: user.name, user });
 }
