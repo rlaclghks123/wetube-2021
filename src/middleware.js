@@ -16,6 +16,7 @@ export const privateMiddleWare = (req, res, next) => {
     }
 }
 
+
 export const publicOnlyMiddleWare = (req, res, next) => {
     if (!req.session.loggedIn) {
         return next();
