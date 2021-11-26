@@ -22,7 +22,6 @@ const downloadFile = (fileUrl, filename) => {
   a.click();
 }
 
-
 const handleDownload = async () => {
 
   actionBtn.removeEventListener("click", handleDownload);
@@ -75,7 +74,6 @@ const handleDownload = async () => {
   actionBtn.addEventListener("click", handleStart);
 
 }
-
 
 const handleStart = () => {
   actionBtn.innerText = "Recording";
