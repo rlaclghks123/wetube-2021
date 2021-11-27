@@ -19,51 +19,83 @@
         margin-right: 20px;
     }
 }
-.video__add-comments {
-    margin: 20px 0px;
-    
+
+#commentForm{
+    padding:10px;
+    max-width:800px ;
+    margin-top: 30px;
+    border:none;
+    background-color: inherit;
+    #video__comment-text{
+        border-radius: 9999px;
+        // background-color: tomato;
+        margin-bottom: 3px;
+        padding: 15px;
+    }
+    #video__comment-submit{
+        max-width: 100px;
+        position: absolute;
+        right: 335px;
+        bottom:-280px;
+        padding: 10px;
+       
+    }
+}
+
+.video__add-comments{
+    margin-bottom: 30px;
     .video__comment-form{
-        width: 100%;
+        // height: 100px;
         display: flex;
         flex-direction: row;
-        height: 20px;
-        padding: 20px;
-        background-color: white;
-        border:none;
-        color:black;
-        border-bottom: 1px solid rgba(0,0,0,0.5);
-        textarea{
-            &::placeholder{
-                color: rgba(0,0,0,0.5);
-            }
+        align-items: flex-end;
+        .video__add-comments-textarea{
+            padding-top: 15px;
+            padding-left: 30px;
+            background-color: inherit;
+            // border: none;
+            border:1px solid rgba(0,0,0,0.1);
+            border-radius: 10px;
             font-size: 15px;
-            border:none;
-          background-color: inherit;
             outline: none;
             margin-right: 15px;
+            box-sizing: border-box;
         }
-        button{
-            border:none;
-            background-color:inherit;
-
+        .video__add-comments-Btn{
+            width: 120px;
+            height: 30px;
         }
     }
 }
-.video__comments      {
+.video__comments   {
     display: flex;
     justify-content: center;
-    height: 200px;
     .video__comment{
-        background-color: white;
-        border: 1px solid rgba(0,0,0,0.2);
-        border-radius: 30px;
-        width: 320px;
-        padding :10px;
-        margin: 5px 0px;
-       color: rgba(0,0,0,0.7);
-       i{
-           margin-right: 15px;
-       }
+        display: flex;
+        align-items: flex-start;
+        // justify-content: center;
+        position: relative;
+        background-color: inherit;
+        border:1px solid rgba(0,0,0,0.1);
+        margin-bottom: 15px;
+        max-width: 350px;
+        width: 350px;
+        padding: 15px;
+        border-radius: 10px;
+        margin-left: -80px;
+        .video_comment-text{
+            width: 300px;
+            word-wrap:break-word;
+        }
+        .fas.fa-comment{
+            margin-right: 15px;
+        }
+        .deleteBtn{
+            position: absolute;
+            right: 10;
+            cursor: pointer;
+        }
     }
-   
 }
+    
+    

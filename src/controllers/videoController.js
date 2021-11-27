@@ -2,6 +2,7 @@
 import User from "../models/User";
 import Video from "../models/Video";
 import Comment from "../models/Comment";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -16,12 +17,13 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner").populate("comments");
+  const comment = await Comment.findById(id).populate("owner");
   dayjs.extend(relativeTime);
   const createdAtFromNow = dayjs(video.createdAt).fromNow();
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video is not Found" });
   }
-  return res.render("watch", { pageTitle: video.title, video, createdAtFromNow });
+  return res.render("watch", { pageTitle: video.title, video, comment, createdAtFromNow });
 };
 
 
@@ -159,6 +161,3 @@ export const createComment = async (req, res) => {
 }
 
 
-export const deleteComment = (req, res) => {
-
-}
