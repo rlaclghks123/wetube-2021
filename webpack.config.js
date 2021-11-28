@@ -11,7 +11,6 @@ module.exports = {
     },
 
     mode: "development",
-    watch: true,
     plugins: [new MiniCssExtractPlugin({ filename: "css/styles.css" })],
     output: {
         filename: "js/[name].js",

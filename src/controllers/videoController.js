@@ -9,7 +9,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 
 
 export const home = async (req, res) => {
-  const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner");
+  const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner").populate("comments");
   return res.render("home", { pageTitle: "Home", videos });
 }
 
@@ -108,9 +108,7 @@ export const deleteVideo = async (req, res) => {
   }
   await Video.findByIdAndDelete(id);
 
-  if (String(video.owner) !== _id) {
-    return res.status(403).redirect("/");
-  }
+
   res.redirect("/");
 }
 
@@ -159,5 +157,18 @@ export const createComment = async (req, res) => {
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
 }
+
+
+
+export const deleteComment = async (req, res) => {
+  const commentId = req.body.commentId;
+  const { session: { user } } = req;
+  const comment = await Comment.findById(commentId).populate("owner");
+
+  if (user._id === comment.owner.id) {
+    await Comment.findByIdAndDelete(commentId);
+  }
+}
+
 
 

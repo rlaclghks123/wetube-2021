@@ -1,14 +1,8 @@
-
+const { default: fetch } = require("node-fetch");
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const deleteBtn = document.querySelector(".deleteBtn");
+let deleteBtn = document.querySelector(".deleteBtn");
 
-
-
-const handleDelete = (event) => {
-    event.preventDefault();
-    console.log(event.target);
-}
 
 
 
@@ -25,14 +19,15 @@ const addComment = (text, id) => {
     span.className = "video__add-comments-textarea";
 
     const span2 = document.createElement("span");
-    span2.innerText = "❌";
-    span2.className = "deleteBtn";
-    span2.addEventListener("click", handleDelete);
+    span2.innerText = " ❌";
+    span2.classList = "deleteBtn";
     newComment.appendChild(icon);
     newComment.appendChild(span);
     newComment.appendChild(span2);
+    newComment.addEventListener("click", handleDelete);
     videoComments.prepend(newComment);
 }
+
 
 const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,15 +48,26 @@ const handleSubmit = async (event) => {
         addComment(text, newCommentId);
     }
 }
+const handleDelete = async (event) => {
+    const videoId = videoContainer.dataset.id;
+    const comment = event.target.parentNode;
+    const commentId = comment.dataset.id;
+    comment.remove();
 
+    await fetch(`/api/videos/${videoId}/commentDelete`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ commentId }),
+    });
+
+}
 
 if (form) {
     form.addEventListener("submit", handleSubmit);
 }
-if (deleteBtn) {
 
+if (deleteBtn) {
     deleteBtn.addEventListener("click", handleDelete);
 }
-
 
 

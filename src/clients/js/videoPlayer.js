@@ -1,5 +1,3 @@
-
-
 const video = document.querySelector("video");
 const playBtn = document.getElementById("playBtn");
 const playBtnIcon = playBtn.querySelector("i");
