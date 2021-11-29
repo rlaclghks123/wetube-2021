@@ -22,9 +22,9 @@ header
                         else
                             if loggedInUser.avatar_url
                                 if loggedInUser.avatar_url.includes("github")
-                                    img.header__avatar(src="/"+ loggedInUser.avatar_url) 
+                                    img.header__avatar(src=loggedInUser.avatar_url) 
                                 else
-                                    img.header__avatar(src="/"+ loggedInUser.avatar_url) 
+                                    img.header__avatar(src=loggedInUser.avatar_url) 
 
             else   
                 li 
