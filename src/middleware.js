@@ -14,21 +14,21 @@ const s3 = new aws.S3({
 const s3ImageUploader = multerS3({
     s3: s3,
     bucket: "wetubechimanbucket/images",
-    acl: "public-read",
+    acl: 'public-read',
 })
 
 
 const s3VideoUploader = multerS3({
     s3: s3,
-    bucket: "wetubechimanbucket/video",
-    acl: "public-read",
+    bucket: "wetubechimanbucket/videos",
+    acl: 'public-read',
 })
 
 export const localMiddleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
     res.locals.siteName = "Wetube";
     res.locals.loggedInUser = req.session.user || {};
-    res.locals.Heroku = isHeroku;
+    res.locals.heroku = isHeroku;
     next();
 }
 
@@ -55,7 +55,7 @@ export const avatarUpload = multer({
     limit: {
         fileSize: 3000000,
     },
-    storage: isHeroku ? s3ImageUploader : undefined,
+    storage: isHeroku ? s3ImageUploader : undefined
 });
 
 export const videoUpload = multer({
@@ -63,5 +63,5 @@ export const videoUpload = multer({
     limit: {
         fileSize: 10000000,
     },
-    storage: isHeroku ? s3VideoUploader : undefined,
+    storage: isHeroku ? s3VideoUploader : undefined
 })
