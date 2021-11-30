@@ -5,34 +5,29 @@ import aws from "aws-sdk";
 
 const s3 = new aws.S3({
     credentials: {
-        accessKeyId: process.env.AWS_APIKEY,
+        accessKeyId: process.env.AWS_ID,
         secretAccessKey: process.env.AWS_SECTET,
     }
 });
 
-
-
-
 const s3ImageUploader = multerS3({
     s3: s3,
-    bucket: "wetubechimanbucket",
+    bucket: "wetubechiman",
     acl: "public-read",
-    contentType: multerS3.AUTO_CONTENT_TYPE,
 })
 
 
 const s3VideoUploader = multerS3({
     s3: s3,
-    bucket: "wetubechimanbucket",
+    bucket: "wetubechiman",
+    acl: "public-read",
 })
-
 export const localMiddleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
     res.locals.siteName = "Wetube";
     res.locals.loggedInUser = req.session.user || {};
     next();
 }
-
 export const privateMiddleWare = (req, res, next) => {
     if (req.session.loggedIn) {
         return next();
@@ -41,8 +36,6 @@ export const privateMiddleWare = (req, res, next) => {
         return res.redirect("/login");
     }
 }
-
-
 export const publicOnlyMiddleWare = (req, res, next) => {
     if (!req.session.loggedIn) {
         return next();
