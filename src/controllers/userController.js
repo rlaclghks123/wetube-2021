@@ -51,6 +51,7 @@ export const postLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
+
     return res.redirect("/");
 }
 
@@ -158,6 +159,7 @@ export const postEdit = async (req, res) => {
     },
         { new: true });
     req.session.user = updateUser;
+
     return res.redirect("/");
 }
 
