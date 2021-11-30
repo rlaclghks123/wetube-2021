@@ -10,16 +10,18 @@ const s3 = new aws.S3({
     }
 });
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 const s3ImageUploader = multerS3({
     s3: s3,
-    bucket: "wetubechiman",
+    bucket: "wetubechiman/images",
     acl: "public-read",
 })
 
 
 const s3VideoUploader = multerS3({
     s3: s3,
-    bucket: "wetubechiman",
+    bucket: "wetubechiman/videos",
     acl: "public-read",
 })
 export const localMiddleware = (req, res, next) => {
@@ -50,7 +52,7 @@ export const avatarUpload = multer({
     limit: {
         fileSize: 3000000,
     },
-    storage: s3ImageUploader
+    storage: isHeroku ? s3ImageUploader : undefined,
 });
 
 export const videoUpload = multer({
@@ -58,5 +60,5 @@ export const videoUpload = multer({
     limit: {
         fileSize: 10000000,
     },
-    storage: s3VideoUploader
+    storage: isHeroku ? s3VideoUploader : undefined,
 });
