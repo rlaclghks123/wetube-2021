@@ -151,6 +151,7 @@ export const postEdit = async (req, res) => {
                 errorMessage: "username/email is already taken"
             });
     }
+    console.log(file);
 
 
 
@@ -160,7 +161,6 @@ export const postEdit = async (req, res) => {
     },
         { new: true });
     req.session.user = updateUser;
-
     return res.redirect("/");
 }
 
