@@ -11,7 +11,6 @@ const s3 = new aws.S3({
 
 
 
-const isHeroku = (process.env.NODE_ENV === "production");
 
 const s3ImageUploader = multerS3({
     s3: s3,
@@ -57,7 +56,7 @@ export const avatarUpload = multer({
     limits: {
         fileSize: 3000000,
     },
-    storage: isHeroku ? undefined : s3ImageUploader,
+    storage: s3ImageUploader,
 });
 
 export const videoUpload = multer({
@@ -65,7 +64,7 @@ export const videoUpload = multer({
     limits: {
         fileSize: 10000000,
     },
-    storage: isHeroku ? undefined : s3VideoUploader,
+    storage: s3VideoUploader,
 });
 
 
