@@ -2,7 +2,11 @@ extends base
 
 block content 
     div#videoContainer(data-id=video._id)
-        video(src=video.fileUrl)
+        if  /^https?:\/\//.test(video.fileUrl)
+            video(src=video.fileUrl  crossorigin).video
+        else
+            video(src=`/${video.fileUrl}` ).video
+        //- video(src=video.fileUrl,crossorigin)
         div#videoControls
             div
                 input(type="range",step=1,value="0", min=0)#timeLine 
