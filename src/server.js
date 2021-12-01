@@ -8,7 +8,7 @@ import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import apiRouter from "./routers/apiRouter";
-import { localMiddleware } from "./middleware"
+import { localsMiddleware } from "./middleware"
 
 
 
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(flash());
-app.use(localMiddleware);
+app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"),
   express.static("node_modules/@ffmpeg/core/dist"));
