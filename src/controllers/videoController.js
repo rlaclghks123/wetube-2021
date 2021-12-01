@@ -76,11 +76,13 @@ export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
   const { video, thumb } = req.files;
 
+  const isHeroku = (process.env.NODE_ENV === "production");
+  console.log(video, thumb);
   try {
     const newVideo = await Video.create({
       owner: _id,
-      fileUrl: video[0].location,
-      thumbUrl: thumb[0].location,
+      fileUrl: isHeroku ? video[0].location : video[0].path,
+      thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,
       title,
       description,
       hashtags: Video.formatHashtag(hashtags)
@@ -131,7 +133,7 @@ export const registerView = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
   if (!video) {
-    return res.statusSend(404);
+    return res.sendStatus(404);
   }
   video.meta.views = video.meta.views + 1;
   await video.save();
