@@ -17,9 +17,6 @@ const s3ImageUploader = multerS3({
     acl: "public-read",
     contentType: multerS3.AUTO_CONTENT_TYPE,
 });
-
-
-
 const s3VideoUploader = multerS3({
     s3: s3,
     bucket: "wetubechiman/videos",
