@@ -80,6 +80,7 @@ const handleStart = () => {
   actionBtn.disabled = true;
   actionBtn.removeEventListener("click", handleStart);
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
+
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data);
     video.srcObject = null;
