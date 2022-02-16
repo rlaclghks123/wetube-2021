@@ -1,7 +1,7 @@
 {
   "name": "wetube",
   "version": "1.0.0",
-  "description": "",
+  "description": "/ -> Home /join -> Join /login -> Login /search -> Search",
   "scripts": {
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
@@ -28,7 +28,7 @@
     "connect-mongo": "^4.6.0",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-flash": "0.0.2",
     "express-session": "^1.17.2",
     "mongoose": "^6.0.10",
@@ -54,5 +54,6 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1"
-  }
+  },
+  "main": "webpack.config.js"
 }
