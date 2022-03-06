@@ -47,8 +47,8 @@ const handleVolumnChange = (event) => {
         muteBtnIcon.classList = "fas fa-volume-off"
     }
     volumeValue = value;
-    video.value = value;
-
+    video.volume = value;
+    muteIcon.classList = video.volume === 0 ? "fas fa-volume-mute" : "fas fa-volume-up";
 }
 
 const formatTime = (seconds) => {
