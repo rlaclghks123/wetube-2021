@@ -1,7 +1,7 @@
 const { default: fetch } = require("node-fetch");
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-let deleteBtn = document.querySelector(".deleteBtn");
+const deleteBtn = document.querySelectorAll(".deleteBtn");
 
 
 
@@ -67,7 +67,9 @@ if (form) {
 }
 
 if (deleteBtn) {
-    deleteBtn.addEventListener("click", handleDelete);
+    deleteBtn.forEach((deleteBtn) => {
+        deleteBtn.addEventListener("click", handleDelete);
+    })
 }
 
 
