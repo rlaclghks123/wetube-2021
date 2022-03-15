@@ -1,10 +1,17 @@
-# 1. wetube-2021
-
-![wetube](readme/momentom.jpg)
+# 1. wetube Clone-2021
 
 
+| Feature     | Image                                        |
+| ----------- | -------------------------------------------- |
+| Home Page   | <img src="image/home.jpg" width="300"><br>   |
+| Join Page   | <img src="image/join.jpg" width="300"><br>   |
+| LogIn Page  | <img src="image/login.jpg" width="300"><br>  |
+| Search Page | <img src="image/search.jpg" width="300"><br> |
+| Upload Page | <img src="image/upload.jpg" width="300"><br> |
 
-- # 사용기술
+<hr>
+
+- ## <사용기술>
 
 - - [x]  pug 사용
        
@@ -35,12 +42,36 @@
         - multer MiddleWare를 이용한 사진 및 비디오 업로드 
   ---
 
+- - [x]  webpack, babel을 사용하여, 최신코드를 사용 및 변환
 
-- - [x]   User,Video 를 서로 연결
-
-        - ref, objectId를 통해 Video, User를 연결.
-        - populate를 사용하여, pug에서 obj사용.
-        - 
-     
+        - webpack을 사용하여, JS, SCSS, CSS, HTML 등을 변환
+        - babel을 사용하여, 최신코드 사용 및 코드 압축(Build)
   ---
 
+- - [x]  JavaScript를 사용하여, 여러가지 기능 구현
+
+        - video의 play, pause 버튼을 구현
+        - video의 mute, unmute 기능 구현
+        - video의 currentTime과 totalTime 구현
+        - video의 fullScreen 기능 구현 
+  ---
+
+- - [x]  fetch를 사용하여 서버와 연결
+
+        - fetch를 사용하여, 실시간 댓글 추가, 삭제 기능 구현.
+        - fetch를 사용하여, view를 추가. 
+  ---
+
+
+- - [x]   AWS를 사용하여 파일 업로드
+
+        - AWS S3를 사용하여, video, image를 저장. 
+        - AWS IAM을 사용하여, 안전하게 제어 
+     
+  ---
+- - [x]   Heroku와 MongoDB Atlas를 통해 실제 서버 배포
+
+        - Heroku를 사용하여, 실제 서버를 배포.
+        - MongoDB Atlas에 실제 DB를 저장. 
+     
+  ---
