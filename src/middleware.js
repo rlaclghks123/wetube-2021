@@ -8,6 +8,7 @@ const s3 = new aws.S3({
         secretAccessKey: process.env.AWS_SECRET,
     },
 });
+
 const isHeroku = process.env.NODE_ENV === "production";
 
 

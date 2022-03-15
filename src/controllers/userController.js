@@ -120,9 +120,7 @@ export const finishGithubLogin = async (req, res) => {
 
 
 export const logout = (req, res) => {
-    // req.session.destroy();
-    res.session.loggedIn = false;
-    req.flash("info", "Bye Bye");
+    req.session.destroy();
     return res.redirect("/");
 };
 
